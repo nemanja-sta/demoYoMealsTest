@@ -3,6 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 
 import pages.LocationPopupPage;
+import pages.LoginPage;
 
 public class ProfileTest extends BasicTest {
 
@@ -11,9 +12,12 @@ public class ProfileTest extends BasicTest {
 		this.driver.navigate().to(this.baseUrl + "/guest-user/login-form/");
 
 		LocationPopupPage lpp = new LocationPopupPage(this.driver, this.wait, this.executor);
+		LoginPage lp = new LoginPage(this.driver, this.wait, this.executor);
 
 		lpp.closeDialog();
-
+		lp.login(this.email, this.password);
+		
+		Thread.sleep(5000);
 	}
 }
 
