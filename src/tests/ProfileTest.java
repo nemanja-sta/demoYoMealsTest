@@ -4,6 +4,8 @@ import org.testng.annotations.Test;
 
 import pages.LocationPopupPage;
 import pages.LoginPage;
+import pages.NotificationSystemPage;
+import pages.ProfilePage;
 
 public class ProfileTest extends BasicTest {
 
@@ -13,21 +15,23 @@ public class ProfileTest extends BasicTest {
 
 		LocationPopupPage lpp = new LocationPopupPage(this.driver, this.wait, this.executor);
 		LoginPage lp = new LoginPage(this.driver, this.wait, this.executor);
+		NotificationSystemPage nsp = new NotificationSystemPage(this.driver, this.wait, this.executor);
+		ProfilePage pp = new ProfilePage(this.driver, this.wait, this.executor);
 
 		lpp.closeDialog();
 		lp.login(this.email, this.password);
+
+		if (nsp.notificationMessage().equals("Login Successfull")) {
+			System.out.println("Logged In");
+		} else {
+			System.out.println("Not Logged In");
+		}
+
+		this.driver.navigate().to(this.baseUrl + "/member/profile/");
+
+		pp.updateProfile("John", "Newton", 456, 123987, 75024, "United Kingdom", "Zug", "Baar");
 		
+
 		Thread.sleep(5000);
 	}
 }
-
-//U okviru edit profile testa potrebno je izvršiti sledeće korake:
-//●	učitajte stranicu http://demo.yo-meals.com/guest-user/login-form
-//●	ugasite lokacioni iskačući dijalog
-//●	prijavite se na aplikaciju preko demo naloga
-//●	verifikujte da je prikazana poruka sa tekstom "Login Successfull"
-//●	učitajte stranicu http://demo.yo-meals.com/member/profile
-//●	zamenite sve osnovne informacije korisnika
-//●	verifikujte da je prikazana poruka sa tekstom "Setup Successful"
-//●	odjavite se sa sajta
-//●	verifikujte da je prikazana poruka sa tekstom "Logout Successfull!"
