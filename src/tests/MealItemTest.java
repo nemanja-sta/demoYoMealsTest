@@ -32,6 +32,7 @@ public class MealItemTest extends BasicTest {
 		mp.addMeal(3);
 
 		Assert.assertTrue(nsp.notificationMessage().contains("The Following Errors Occurred:"), "[ERROR] No Location");
+		Assert.assertTrue(nsp.notificationMessage().contains("Please Select Location"), "[ERROR] No Location");
 
 		nsp.toBeInvisible();
 
