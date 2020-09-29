@@ -34,10 +34,6 @@ public class ProfileTest extends BasicTest {
 
 		Assert.assertTrue(nsp.notificationMessage().equals("Setup Successful"), "[ERROR] Not Saved");
 
-		// pp.uploadPhoto();
-
-		// Thread.sleep(10000);
-
 		ap.logout();
 
 		Assert.assertTrue(nsp.notificationMessage().equals("Logout Successfull!"), "[ERROR] Unexpected logout message");
