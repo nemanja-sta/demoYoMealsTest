@@ -67,6 +67,13 @@ public class ProfilePage extends BasicPage {
 		this.driver.findElement(By.xpath("//input[@type='file']")).sendKeys(imgPath);
 	}
 
+	public void removePhoto() {
+		WebElement btn = this.driver.findElement(By.className("remove"));
+
+		JavascriptExecutor js = (JavascriptExecutor) this.driver;
+		js.executeScript("arguments[0].click();", btn);
+	}
+
 	public WebElement getSaveButton() {
 		return this.driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[5]/div/fieldset/input"));
 	}
