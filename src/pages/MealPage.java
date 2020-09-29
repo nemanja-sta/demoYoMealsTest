@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,7 +24,7 @@ public class MealPage extends BasicPage {
 
 	public void addMeal(int quantity) {
 		String s = String.valueOf(quantity);
-		// this.qtyInput().clear();
+		this.qtyInput().sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 		this.qtyInput().sendKeys(s);
 		this.addCartButton().click();
 	}

@@ -52,18 +52,19 @@ public class ProfileTest extends BasicTest {
 		lpp.closeDialog();
 		lp.login(this.email, this.password);
 
-		Assert.assertTrue(nsp.notificationMessage().equals("Login Successfull"));
+		Assert.assertTrue(nsp.notificationMessage().equals("Login Successfull"), "[ERROR] Not LoggedIn");
 
 		this.driver.navigate().to(this.baseUrl + "/member/profile/");
 
-		Assert.assertTrue(nsp.notificationMessage().equals("Profile Image Uploaded Successfully"));
+		Assert.assertTrue(nsp.notificationMessage().equals("Profile Image Uploaded Successfully"), "[ERROR] No Photo");
 
-		Assert.assertTrue(nsp.notificationMessage().equals("Profile Image Deleted Successfully"));
+		Assert.assertTrue(nsp.notificationMessage().equals("Profile Image Deleted Successfully"),
+				"[ERROR] Photo Not Deleted");
 
 		nsp.toBeInvisible();
 
 		ap.logout();
 
-		Assert.assertTrue(nsp.notificationMessage().equals("Logout Successfull!"));
+		Assert.assertTrue(nsp.notificationMessage().equals("Logout Successfull!"), "[ERROR] Not Logged Out");
 	}
 }
