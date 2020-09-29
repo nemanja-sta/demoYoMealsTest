@@ -14,14 +14,15 @@ public class NotificationSystemPage extends BasicPage {
 	}
 
 	public WebElement getNotification() {
-		return this.driver.findElement(By.xpath("//*[contains(@class, 'alert--success')]"));
+		return this.driver.findElement(By.xpath(
+				"//*[contains(@class, 'alert--success') or contains(@class, 'alert--danger')][contains(@style,'display: block')]"));
+	}
+
+	public WebElement getNotificationDanger() {
+		return this.driver.findElement(By.xpath("//*[contains(@class, 'alert--danger')]"));
 	}
 
 	public String notificationMessage() {
-		return getNotification().getText();
-	}
-
-	public String setupMessage() {
 		return getNotification().getText();
 	}
 

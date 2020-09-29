@@ -1,5 +1,8 @@
 package pages;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -54,15 +57,14 @@ public class ProfilePage extends BasicPage {
 		select.selectByVisibleText(city);
 	}
 
-	public WebElement getPhotoInput() {
-		return this.driver
-				.findElement(By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div/div[2]/div/div[1]/div/a[1]"));
-	}
+	public void uploadPhoto() throws IOException {
+		WebElement btn = this.driver.findElement(By.className("upload"));
 
-	public void uploadPhoto() {
-		String script = "arguments[0].click();";
-		executor.executeScript(script, this.getPhotoInput());
+		JavascriptExecutor js = (JavascriptExecutor) this.driver;
+		js.executeScript("arguments[0].click();", btn);
 
+		String imgPath = new File("images/slika.jpg").getCanonicalPath();
+		this.driver.findElement(By.xpath("//input[@type='file']")).sendKeys(imgPath);
 	}
 
 	public WebElement getSaveButton() {
@@ -95,32 +97,4 @@ public class ProfilePage extends BasicPage {
 
 		this.getSaveButton().click();
 	}
-
-	public WebElement logoutDropDown() {
-		return this.driver.findElement(By.xpath("/html/body/header/div[2]/div/div[2]/div[2]/ul/li/a"));
-	}
-
-	public WebElement logoutButton() {
-		return this.driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/div/div[2]/div[2]/ul/li/div/ul/li[2]/a"));
-	}
-
-	public void logout() throws InterruptedException {
-		this.logoutDropDown().click();
-		this.logoutButton().click();
-	}
 }
-
-//WebElement uploadElement = driver.findElement(By.xpath("//*[@id=\"inputImage\"]"));
-//
-//uploadElement.sendKeys("D:\\Slike\\slika.jpg");
-
-//●	get metode za sve potrebne elemente
-//○	sve elemente za izmenu osnovnih informacija kao i 
-//○	sve elemente potrebne za rad sa profilnom slikom
-//○	da bi se na stranici pojavio element input type="file" potrebno je da se prvo izvrši JavaScript kod koji vrši akciju klik na Upload dugme 
-//○	Skripta: arguments[0].click();
-//●	metodu koja otprema profilnu sliku - kao parametar se prosleđuje putanja do fajla, tj. u ovom slučaju do slike
-//●	metodu koja briše profilnu sliku
-//○	klikom na Remove dugme 
-//○	Preporuka: izvršite JavaScript kod arguments[0].click(); nad tim dugmetom
-//●	metodu koja menja sve osnovne informacije korisnika - kao parametri se prosleđuju sve potrebne informacije

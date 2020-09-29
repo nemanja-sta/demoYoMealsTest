@@ -12,12 +12,16 @@ public class LocationPopupPage extends BasicPage {
 		super(driver, wait, executor);
 	}
 
-	public WebElement selectLocation() {
-		return this.driver.findElement(By.xpath("//*[@id=\"locality_keyword\"]"));
-	}
-
 	public WebElement closeX() {
 		return this.driver.findElement(By.xpath("//*[@id=\"location-popup\"]/div/div/div/div/a"));
+	}
+
+	public void closeDialog() {
+		this.closeX().click();
+	}
+
+	public WebElement selectLocation() {
+		return this.driver.findElement(By.xpath("//*[@class='location-selector']/a"));
 	}
 
 	public WebElement getKeyword() {
@@ -25,7 +29,7 @@ public class LocationPopupPage extends BasicPage {
 	}
 
 	public WebElement getLocationItem(String locationName) {
-		return this.driver.findElement(By.xpath("//li/a[contains(text(), '\" + locationName + \"')]/.."));
+		return this.driver.findElement(By.xpath("//li/a[contains(text(), '" + locationName + "')]/.."));
 	}
 
 	public WebElement getLocationInput() {
@@ -40,17 +44,14 @@ public class LocationPopupPage extends BasicPage {
 		this.selectLocation().click();
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(String location) throws InterruptedException {
+		this.openLocationDialog();
 		this.getKeyword().click();
 
 		String argumentValue = getLocationItem(location).getAttribute("data-value");
 		String enterLocation = "arguments[0].value=arguments[1]";
-		executor.executeScript(enterLocation, getLocationInput(), argumentValue);
-
-		executor.executeScript("arguments[0].click();");
+		executor.executeScript(enterLocation, this.getLocationInput(), argumentValue);
+		executor.executeScript("arguments[0].click();", this.getSubmit());
 	}
 
-	public void closeDialog() {
-		this.closeX().click();
-	}
 }
