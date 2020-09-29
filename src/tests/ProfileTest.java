@@ -1,7 +1,7 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import pages.LocationPopupPage;
 import pages.LoginPage;
 import pages.NotificationSystemPage;
@@ -21,17 +21,17 @@ public class ProfileTest extends BasicTest {
 		lpp.closeDialog();
 		lp.login(this.email, this.password);
 
-		if (nsp.notificationMessage().equals("Login Successfull")) {
-			System.out.println("Logged In");
-		} else {
-			System.out.println("Not Logged In");
-		}
+		Assert.assertTrue(nsp.notificationMessage().equals("Login Successfull"));
 
 		this.driver.navigate().to(this.baseUrl + "/member/profile/");
 
-		pp.updateProfile("John", "Newton", 456, 123987, 75024, "United Kingdom", "Zug", "Baar");
-		
+		pp.updateProfile("John", "Newton", 456, 123987, 75024, "United Kingdom", "Bristol", "Avon");
 
-		Thread.sleep(5000);
+		Assert.assertTrue(nsp.notificationMessage().equals("Setup Successful"));
+
+		pp.logout();
+
+		Assert.assertTrue(nsp.notificationMessage().equals("Logout Successfull!"));
+
 	}
 }

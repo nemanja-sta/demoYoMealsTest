@@ -21,6 +21,10 @@ public class NotificationSystemPage extends BasicPage {
 		return getNotification().getText();
 	}
 
+	public String setupMessage() {
+		return getNotification().getText();
+	}
+
 	public void toBeInvisible() {
 		this.wait.until(ExpectedConditions.attributeContains(By.xpath("//*[contains(@class, 'system_message')]"),
 				"style", "display: none;"));

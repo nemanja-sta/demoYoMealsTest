@@ -53,17 +53,22 @@ public class ProfilePage extends BasicPage {
 		Select select = new Select(gcitys);
 		select.selectByVisibleText(city);
 	}
-	
+
 	public WebElement getPhotoInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"profileInfo\"]/div/div[1]/img"));
+		return this.driver
+				.findElement(By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div/div[2]/div/div[1]/div/a[1]"));
 	}
-	
+
+	public void uploadPhoto() {
+		String script = "arguments[0].click();";
+		executor.executeScript(script, this.getPhotoInput());
+
+	}
+
 	public WebElement getSaveButton() {
 		return this.driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[5]/div/fieldset/input"));
 	}
-	
-	
-	
+
 	public void updateProfile(String fName, String lName, int address, int phone, int zip, String country, String state,
 			String city) throws InterruptedException {
 
@@ -91,6 +96,18 @@ public class ProfilePage extends BasicPage {
 		this.getSaveButton().click();
 	}
 
+	public WebElement logoutDropDown() {
+		return this.driver.findElement(By.xpath("/html/body/header/div[2]/div/div[2]/div[2]/ul/li/a"));
+	}
+
+	public WebElement logoutButton() {
+		return this.driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/div/div[2]/div[2]/ul/li/div/ul/li[2]/a"));
+	}
+
+	public void logout() throws InterruptedException {
+		this.logoutDropDown().click();
+		this.logoutButton().click();
+	}
 }
 
 //WebElement uploadElement = driver.findElement(By.xpath("//*[@id=\"inputImage\"]"));
