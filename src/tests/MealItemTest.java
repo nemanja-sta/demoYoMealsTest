@@ -58,7 +58,7 @@ public class MealItemTest extends BasicTest {
 
 		mp.favouriteMeal();
 
-		Assert.assertTrue(nsp.notificationMessage().contains("Please login first!"));
+		Assert.assertTrue(nsp.notificationMessage().contains("Please login first!"), "[ERROR] Logged In");
 
 		this.driver.navigate().to(this.baseUrl + "/member/profile/");
 		lp.login(this.email, this.password);
