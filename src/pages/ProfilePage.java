@@ -36,39 +36,50 @@ public class ProfilePage extends BasicPage {
 		return this.driver.findElement(By.xpath("//*[@name='user_zip']"));
 	}
 
+	public WebElement countrySelectBtn() {
+		return this.driver.findElement(By.xpath("//*[@id='user_country_id']"));
+	}
+
+	public WebElement stateSelectBtn() {
+		return this.driver.findElement(By.xpath("//*[@id='user_state_id']"));
+	}
+
+	public WebElement citySelectBtn() {
+		return this.driver.findElement(By.xpath("//*[@id='user_city']"));
+	}
+
 	public void countrySelect(String country) {
-		WebElement gcs = this.driver.findElement(By.xpath("//*[@id='user_country_id']"));
-		Select select = new Select(gcs);
+		Select select = new Select(countrySelectBtn());
 		select.selectByVisibleText(country);
 	}
 
 	public void stateSelect(String state) {
-		WebElement gss = this.driver.findElement(By.xpath("//*[@id='user_state_id']"));
-		Select select = new Select(gss);
+		Select select = new Select(stateSelectBtn());
 		select.selectByVisibleText(state);
 	}
 
 	public void citySelect(String city) {
-		WebElement gcitys = this.driver.findElement(By.xpath("//*[@id='user_city']"));
-		Select select = new Select(gcitys);
+		Select select = new Select(citySelectBtn());
 		select.selectByVisibleText(city);
 	}
 
-	public void uploadPhoto() throws IOException {
+	public void uploadPhoto(String path) throws IOException {
 		WebElement btn = this.driver.findElement(By.className("upload"));
 
 		JavascriptExecutor js = (JavascriptExecutor) this.driver;
 		js.executeScript("arguments[0].click();", btn);
 
-		String imgPath = new File("images/slika.jpg").getCanonicalPath();
+		String imgPath = new File(path).getCanonicalPath();
 		this.driver.findElement(By.xpath("//input[@type='file']")).sendKeys(imgPath);
 	}
 
-	public void removePhoto() {
-		WebElement btn = this.driver.findElement(By.className("remove"));
+	public WebElement getRemoveBtn() {
+		return this.driver.findElement(By.className("remove"));
+	}
 
+	public void removePhoto() {
 		JavascriptExecutor js = (JavascriptExecutor) this.driver;
-		js.executeScript("arguments[0].click();", btn);
+		js.executeScript("arguments[0].click();", this.getRemoveBtn());
 	}
 
 	public WebElement getSaveButton() {
@@ -94,8 +105,10 @@ public class ProfilePage extends BasicPage {
 		this.getZipInput().sendKeys(zipS);
 
 		this.countrySelect(country);
+		// waits for states to be loaded
 		Thread.sleep(2000);
 		this.stateSelect(state);
+		// waits for cities to be loaded
 		Thread.sleep(2000);
 		this.citySelect(city);
 

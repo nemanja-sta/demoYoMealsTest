@@ -58,7 +58,7 @@ public class ProfileTest extends BasicTest {
 
 		this.driver.navigate().to(this.baseUrl + "/member/profile/");
 
-		pp.uploadPhoto();
+		pp.uploadPhoto("images/slika.jpg");
 
 		Thread.sleep(2000);
 

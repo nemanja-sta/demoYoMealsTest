@@ -22,6 +22,7 @@ public class SearchTest extends BasicTest {
 
 		this.driver.navigate().to(this.baseUrl + "meals/");
 		lpp.closeDialog();
+		// wait for dialog to be closed and to load locations
 		Thread.sleep(2000);
 		lpp.setLocation("City Center - Albany");
 
@@ -48,17 +49,14 @@ public class SearchTest extends BasicTest {
 			driver.switchTo().window(newMealWindowHandles);
 			driver.navigate().to(url);
 
-			Thread.sleep(2000);
-
 			lpp.setLocation(location);
-
-			Thread.sleep(2000);
 
 			Assert.assertEquals(srp.resultNumber(), numberOfResultsInt, "[ERROR] Meals Number Not Equal");
 
 			for (int j = 3; j < 3 + numberOfResultsInt; j++) {
-				sa.assertTrue(srp.mealNames().get(j - 3).contains(sheet1.getRow(i).getCell(j).getStringCellValue()),
-						"[ERROR] Meals Does Not Present");
+				String expectedMealName = srp.mealNames().get(j - 3);
+				String actualMealName = sheet1.getRow(i).getCell(j).getStringCellValue();
+				sa.assertTrue(expectedMealName.contains(actualMealName), "[ERROR] Meals Does Not Present");
 			}
 		}
 

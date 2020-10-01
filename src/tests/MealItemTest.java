@@ -56,7 +56,7 @@ public class MealItemTest extends BasicTest {
 
 		lpp.closeDialog();
 
-		mp.favouriteMeal();
+		mp.addMealToFavourite();
 
 		Assert.assertTrue(nsp.notificationMessage().contains("Please login first!"), "[ERROR] Logged In");
 
@@ -65,9 +65,7 @@ public class MealItemTest extends BasicTest {
 
 		this.driver.navigate().to(this.baseUrl + "meal/lobster-shrimp-chicken-quesadilla-combo/");
 
-		mp.favouriteMeal();
-
-		Thread.sleep(2000);
+		mp.addMealToFavourite();
 
 		Assert.assertTrue(nsp.notificationMessage().contains("Product has been added to your favorites."),
 				"[ERROR] No Favourite");

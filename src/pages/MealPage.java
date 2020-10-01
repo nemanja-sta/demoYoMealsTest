@@ -21,6 +21,10 @@ public class MealPage extends BasicPage {
 		return this.driver.findElement(By.xpath("//*[@class='price-feature--wrapper']/div[2]/a"));
 	}
 
+	public WebElement addMealToFavouriteBtn() {
+		return this.driver.findElement(By.xpath("//*[@id='item_119']"));
+	}
+
 	public void addMeal(int quantity) {
 		String s = String.valueOf(quantity);
 		this.qtyInput().sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -28,8 +32,7 @@ public class MealPage extends BasicPage {
 		this.addCartButton().click();
 	}
 
-	public void favouriteMeal() {
-		WebElement btn = this.driver.findElement(By.xpath("//*[@id='item_119']"));
-		btn.click();
+	public void addMealToFavourite() {
+		this.addMealToFavouriteBtn().click();
 	}
 }
