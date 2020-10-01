@@ -41,9 +41,6 @@ public abstract class BasicTest {
 			this.driver = new ChromeDriver();
 		}
 
-		System.setProperty("webdriver.gecko.driver", "driver-lib\\geckodriver.exe");
-		this.driver = new FirefoxDriver();
-
 		this.executor = (JavascriptExecutor) driver;
 		driver.manage().window().maximize();
 		this.wait = new WebDriverWait(driver, 30);

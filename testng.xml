@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="CMS TESTS">
     <test name="Chrome regression test">
-	<parameter name="browser" Chrome/>
+	<parameter name="browser" value="Chrome" />
          <classes>
              <class name="tests.ProfileTest"/>
              <class name="tests.MealItemTest"/>
