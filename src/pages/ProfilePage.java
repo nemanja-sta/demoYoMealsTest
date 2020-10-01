@@ -17,42 +17,39 @@ public class ProfilePage extends BasicPage {
 	}
 
 	public WebElement getFNameInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[1]/div[1]/fieldset/input"));
+		return this.driver.findElement(By.xpath("//*[@name='user_first_name']"));
 	}
 
 	public WebElement getLNameInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[1]/div[2]/fieldset/input"));
+		return this.driver.findElement(By.xpath("//*[@name='user_last_name']"));
 	}
 
 	public WebElement getAddressInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[2]/div[2]/fieldset/input"));
+		return this.driver.findElement(By.xpath("//*[@name='user_address']"));
 	}
 
 	public WebElement getPhoneInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[3]/div[1]/fieldset/input"));
+		return this.driver.findElement(By.xpath("//*[@name='user_phone']"));
 	}
 
 	public WebElement getZipInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"profileInfoFrm\"]/div[3]/div[2]/fieldset/input"));
+		return this.driver.findElement(By.xpath("//*[@name='user_zip']"));
 	}
 
 	public void countrySelect(String country) {
-		WebElement gcs = this.driver.findElement(
-				By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div/div[4]/form/div[4]/div[1]/fieldset/select"));
+		WebElement gcs = this.driver.findElement(By.xpath("//*[@id='user_country_id']"));
 		Select select = new Select(gcs);
 		select.selectByVisibleText(country);
 	}
 
 	public void stateSelect(String state) {
-		WebElement gss = this.driver.findElement(
-				By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div/div[4]/form/div[4]/div[2]/fieldset/select"));
+		WebElement gss = this.driver.findElement(By.xpath("//*[@id='user_state_id']"));
 		Select select = new Select(gss);
 		select.selectByVisibleText(state);
 	}
 
 	public void citySelect(String city) {
-		WebElement gcitys = this.driver.findElement(
-				By.xpath("/html/body/div[6]/div/div/div/div[2]/div/div/div[4]/form/div[4]/div[3]/fieldset/select"));
+		WebElement gcitys = this.driver.findElement(By.xpath("//*[@id='user_city']"));
 		Select select = new Select(gcitys);
 		select.selectByVisibleText(city);
 	}

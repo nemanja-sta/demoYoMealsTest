@@ -14,12 +14,11 @@ public class MealPage extends BasicPage {
 	}
 
 	public WebElement qtyInput() {
-		return this.driver
-				.findElement(By.xpath("//*[@id=\"body\"]/section[1]/div/div/div[2]/div/div[3]/div[1]/ul/li[3]/input"));
+		return this.driver.findElement(By.xpath("//*[@name='product_qty']"));
 	}
 
 	public WebElement addCartButton() {
-		return this.driver.findElement(By.xpath("//*[@id=\"body\"]/section[1]/div/div/div[2]/div/div[3]/div[2]/a"));
+		return this.driver.findElement(By.xpath("//*[@class='price-feature--wrapper']/div[2]/a"));
 	}
 
 	public void addMeal(int quantity) {
@@ -30,7 +29,7 @@ public class MealPage extends BasicPage {
 	}
 
 	public void favouriteMeal() {
-		WebElement btn = this.driver.findElement(By.xpath("//*[@id=\"item_119\"]"));
+		WebElement btn = this.driver.findElement(By.xpath("//*[@id='item_119']"));
 		btn.click();
 	}
 }

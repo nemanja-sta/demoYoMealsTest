@@ -13,15 +13,15 @@ public class LoginPage extends BasicPage {
 	}
 
 	public WebElement getEmailInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"frm_fat_id_frmLogin\"]/fieldset[1]/input"));
+		return this.driver.findElement(By.xpath("//*[@name='username']"));
 	}
 
 	public WebElement getPasswordInput() {
-		return this.driver.findElement(By.xpath("//*[@id=\"frm_fat_id_frmLogin\"]/fieldset[2]/input"));
+		return this.driver.findElement(By.xpath("//*[@name='password']"));
 	}
 
 	public WebElement getLoginButton() {
-		return this.driver.findElement(By.xpath("//*[@id=\"frm_fat_id_frmLogin\"]/fieldset[4]/input"));
+		return this.driver.findElement(By.xpath("//*[@name='btn_submit']"));
 	}
 
 	public void login(String email, String password) {

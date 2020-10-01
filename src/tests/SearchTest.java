@@ -31,7 +31,6 @@ public class SearchTest extends BasicTest {
 		XSSFSheet sheet1 = wb.getSheet("Meal Search Results");
 
 		for (int i = 1; i <= sheet1.getLastRowNum(); i++) {
-		//for (int i = 1; i <= 6; i++) {
 			String newTabScript = "window.open();";
 			executor.executeScript(newTabScript);
 			String mainWindowHandles = driver.getWindowHandle();
