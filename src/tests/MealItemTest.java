@@ -87,7 +87,7 @@ public class MealItemTest extends BasicTest {
 		Thread.sleep(2000);
 		lpp.setLocation("City Center - Albany");
 
-		File file = new File("C:\\Users\\Nemanja\\Desktop\\finalProject\\demoYoMealsTest\\data\\Data.xlsx");
+		File file = new File("data/Data.xlsx").getCanonicalFile();
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
 		XSSFSheet sheet1 = wb.getSheet("Meals");
